@@ -1,15 +1,28 @@
 # FileQuery
-Query a file on your system
+	// Query a file on your system
 
-var fileName = @"C:\Temp\Work\NA_Log.txt";
+	var fileName = @"C:\Work\Myfile.cs";
 
             var fileQuery = new FileQuery.QueryFile();
 
-            var check = fileQuery.Query(fileName).Select(a => a.IndexOf("N/A") > -1).ToList();
+	var check = fileQuery.Query(fileName);
 
             foreach (var item in check)
             {
                 Console.WriteLine(item);
             }
 
-            Console.ReadLine();
+
+	// Convert to JSON
+	var json = fileQuery.ToJson();
+
+            Console.WriteLine(json);
+		
+
+            // Query specific TEXT in the file..
+	var checkBool = fileQuery.Query(fileName).Select(a => a.IndexOf("N/A") > -1).ToList();
+
+            foreach (var item in checkBool)
+            {
+                        Console.WriteLine(item);
+            }
